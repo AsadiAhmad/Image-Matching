@@ -73,3 +73,13 @@ key_point_query, descriptor_query  = sift.detectAndCompute(gray_query_image, Non
 key_point_target, descriptor_target = sift.detectAndCompute(gray_target_image, None)
 ```
 
+key_point_query (keypoints): A list of KeyPoint objects, each representing a distinctive location in the image. each KeyPoint contains:
+- pt: (x, y) coordinates of the keypoint.
+- size: Scale of the keypoint.
+- angle: Orientation (in degrees).
+- response: Strength of the keypoint.
+- 
+descriptor_query (descriptors): A NumPy array of shape (N, 128) where 
+- N = Number of keypoints detected.
+- 128 = The SIFT descriptor dimension (a 128-dimensional feature vector).
+
