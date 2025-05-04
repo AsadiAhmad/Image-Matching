@@ -5,10 +5,6 @@ OpenCV-based feature matching with FLANN and SIFT to locate query images in larg
   <img src="/Pictures/result.jpg"/>
 </div>
 
-## FLANN Overview
-
-FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm for fast nearest-neighbor searches in high-dimensional spaces (like SIFT's 128D descriptors). It's much faster than brute-force matching for large datasets.
-
 ## Tech :hammer_and_wrench: Languages and Tools :
 
 <div>
@@ -26,6 +22,10 @@ FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm
 - OpenCV : Best Library for working with images
 - Numpy : Best Library for working with arrays in python
 - MatPlotLib : Library for showing the charts in python
+
+## FLANN Overview
+
+FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm for fast nearest-neighbor searches in high-dimensional spaces (like SIFT's 128D descriptors). It's much faster than brute-force matching for large datasets.
 
 ## Tutorial
 
@@ -156,3 +156,6 @@ plt.subplot(133),plt.imshow(result[...,::-1]),plt.title('result');
   <img src="/Pictures/result.jpg"/>
 </div>
 
+## License
+
+This project is licensed under the MIT License.
