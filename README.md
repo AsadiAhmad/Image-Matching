@@ -34,7 +34,7 @@ target_image = cv.imread('ps5_games.jpg')
 ```
 
 <div display=flex align=center>
-  <img src="/Pictures/Colors/HSV.jpg" width="400px"/>
-  <img src="/Pictures/Colors/HSV.jpg" width="400px"/>
+  <img src="/Pictures/gost_of_tsushima.jpg" width="400px"/>
+  <img src="/Pictures/ps5_games.jpg" width="400px"/>
 </div>
 
