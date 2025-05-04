@@ -38,3 +38,38 @@ target_image = cv.imread('ps5_games.jpg')
   <img src="/Pictures/ps5_games.jpg" width="400px"/>
 </div>
 
+### Step 4: Create the copy of the target Image
+
+```sh
+result = target_image.copy()
+```
+
+### Step 5: Change Images Color Space into GrayScale
+
+```sh
+gray_query_image = cv.cvtColor(query_image, cv.COLOR_BGR2GRAY)
+gray_target_image = cv.cvtColor(target_image, cv.COLOR_BGR2GRAY)
+```
+
+### Step 6: Use SIFT for detecting keypoints
+
+In this step we define the SIFT from OpenCV and find keypoints (we can call them keypoint fetures too).
+
+Keypoint Detection:
+
+- SIFT uses differences of Gaussians (DoG) to find scale-invariant points.
+- Filters out low-contrast/keypoints on edges (using Hessian matrix).
+
+Descriptor Generation:
+
+- For each keypoint, it analyzes gradients in a 16x16 region around it.
+- Divides the region into 4x4 sub-blocks → computes an 8-bin gradient histogram per block.
+- Concatenates histograms into a 128-element vector (the descriptor).
+
+```sh
+sift = cv.SIFT_create()
+
+key_point_query, descriptor_query  = sift.detectAndCompute(gray_query_image, None)
+key_point_target, descriptor_target = sift.detectAndCompute(gray_target_image, None)
+```
+
