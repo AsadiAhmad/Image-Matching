@@ -1,6 +1,10 @@
 # Image-Matching
 OpenCV-based feature matching with FLANN and SIFT to locate query images in larger scenes. Robust to rotation, scale, and occlusion. Includes template matching comparisons.
 
+## FLANN Overview
+
+FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm for fast nearest-neighbor searches in high-dimensional spaces (like SIFT's 128D descriptors). It's much faster than brute-force matching for large datasets.
+
 ## Tutorial
 
 ### Step 1: Import Libraries
@@ -78,8 +82,8 @@ key_point_query (keypoints): A list of KeyPoint objects, each representing a dis
 - size: Scale of the keypoint.
 - angle: Orientation (in degrees).
 - response: Strength of the keypoint.
-- 
 descriptor_query (descriptors): A NumPy array of shape (N, 128) where 
 - N = Number of keypoints detected.
 - 128 = The SIFT descriptor dimension (a 128-dimensional feature vector).
+
 
