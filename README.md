@@ -23,11 +23,15 @@ OpenCV-based feature matching with FLANN and SIFT to locate query images in larg
 - Numpy : Best Library for working with arrays in python
 - MatPlotLib : Library for showing the charts in python
 
+## 💻 Run the Notebook on Google Colab
+
+You can easily run this code on google colab by just clicking this badge [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AsadiAhmad/Image-Matching/blob/main/Code/Image_Matching.ipynb)
+
 ## FLANN Overview
 
 FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm for fast nearest-neighbor searches in high-dimensional spaces (like SIFT's 128D descriptors). It's much faster than brute-force matching for large datasets.
 
-## Tutorial
+## 📝 Tutorial
 
 ### Step 1: Import Libraries
 
@@ -156,6 +160,6 @@ plt.subplot(133),plt.imshow(result[...,::-1]),plt.title('result');
   <img src="/Pictures/result.jpg"/>
 </div>
 
-## License
+## 🪪 License
 
 This project is licensed under the MIT License.
