@@ -1,6 +1,10 @@
 # Image-Matching
 OpenCV-based feature matching with FLANN and SIFT to locate query images in larger scenes. Robust to rotation, scale, and occlusion. Includes template matching comparisons.
 
+<div display=flex align=center>
+  <img src="/Pictures/result.jpg"/>
+</div>
+
 ## FLANN Overview
 
 FLANN (Fast Library for Approximate Nearest Neighbors) is an optimized algorithm for fast nearest-neighbor searches in high-dimensional spaces (like SIFT's 128D descriptors). It's much faster than brute-force matching for large datasets.
