@@ -86,4 +86,51 @@ descriptor_query (descriptors): A NumPy array of shape (N, 128) where
 - N = Number of keypoints detected.
 - 128 = The SIFT descriptor dimension (a 128-dimensional feature vector).
 
+### Step 7: Calculate FLANN parameters
+
+```sh
+FLANN_INDEX_KDTREE = 1
+index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
+search_params = dict(checks=50)
+flann = cv.FlannBasedMatcher(index_params, search_params)
+matches = flann.knnMatch(descriptor_query, descriptor_target, k=2)
+```
+
+### Step 8: Refine matches
+
+```sh
+good = []
+for m,n in matches:
+    if m.distance < 0.7*n.distance:
+        good.append(m)
+
+MIN_MATCH_COUNT = 10
+
+
+if len(good)>MIN_MATCH_COUNT:
+    src_pts = np.float32([ key_point_query[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+    dst_pts = np.float32([ key_point_target[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+    M, mask = cv.findHomography(src_pts, dst_pts, cv.RANSAC,5.0)
+    matchesMask = mask.ravel().tolist()
+    h,w = gray_query_image.shape
+    pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+    dst = cv.perspectiveTransform(pts,M)
+    result = cv.polylines(result,[np.int32(dst)],True,(0,255,0),3, cv.LINE_AA)
+else:
+    print( "Not enough matches are found - {}/{}".format(len(good), MIN_MATCH_COUNT) )
+    matchesMask = None
+```
+
+### Step 9: Show Result
+
+```sh
+plt.figure(figsize=[15,4])
+plt.subplot(131),plt.imshow(query_image[...,::-1]),plt.title('Image1');
+plt.subplot(132),plt.imshow(target_image[...,::-1]),plt.title('Image2');
+plt.subplot(133),plt.imshow(result[...,::-1]),plt.title('result');
+```
+
+<div display=flex align=center>
+  <img src="/Pictures/result.jpg"/>
+</div>
 
