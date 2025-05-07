@@ -39,7 +39,7 @@ we need to import these libraries :
 
 `cv2`, `numpy`, `matplotlib`
 
-```sh
+```python
 import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
@@ -58,7 +58,7 @@ We need to Download the images from my `Github` repository or you can download y
 
 We need to load images into `python` variables we ues `OpenCV` library to read the images also the format of the images are `nd.array`.
 
-```sh
+```python
 query_image = cv.imread('gost_of_tsushima.jpg')
 target_image = cv.imread('ps5_games.jpg')
 ```
@@ -70,13 +70,13 @@ target_image = cv.imread('ps5_games.jpg')
 
 ### Step 4: Create the copy of the target Image
 
-```sh
+```python
 result = target_image.copy()
 ```
 
 ### Step 5: Change Images Color Space into GrayScale
 
-```sh
+```python
 gray_query_image = cv.cvtColor(query_image, cv.COLOR_BGR2GRAY)
 gray_target_image = cv.cvtColor(target_image, cv.COLOR_BGR2GRAY)
 ```
@@ -96,7 +96,7 @@ Descriptor Generation:
 - Divides the region into 4x4 sub-blocks → computes an 8-bin gradient histogram per block.
 - Concatenates histograms into a 128-element vector (the descriptor).
 
-```sh
+```python
 sift = cv.SIFT_create()
 
 key_point_query, descriptor_query  = sift.detectAndCompute(gray_query_image, None)
@@ -114,7 +114,7 @@ descriptor_query (descriptors): A NumPy array of shape (N, 128) where
 
 ### Step 7: Calculate FLANN parameters
 
-```sh
+```python
 FLANN_INDEX_KDTREE = 1
 index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
 search_params = dict(checks=50)
@@ -124,7 +124,7 @@ matches = flann.knnMatch(descriptor_query, descriptor_target, k=2)
 
 ### Step 8: Refine matches
 
-```sh
+```python
 good = []
 for m,n in matches:
     if m.distance < 0.7*n.distance:
@@ -149,7 +149,7 @@ else:
 
 ### Step 9: Show Result
 
-```sh
+```python
 plt.figure(figsize=[15,4])
 plt.subplot(131),plt.imshow(query_image[...,::-1]),plt.title('Image1');
 plt.subplot(132),plt.imshow(target_image[...,::-1]),plt.title('Image2');
